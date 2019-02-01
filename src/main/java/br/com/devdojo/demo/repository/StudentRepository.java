@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StudentRepository extends PagingAndSortingRepository<Student, Long> { //CrudRepository já possuí todos os métodos básicos para fazer consulta no banco de dados
+public interface StudentRepository extends PagingAndSortingRepository<Student, Long> {
 
     List<Student> findByNameIgnoreCaseContaining(String name);
 

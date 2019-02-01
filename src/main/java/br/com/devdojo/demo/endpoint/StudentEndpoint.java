@@ -4,10 +4,17 @@ import br.com.devdojo.demo.error.ResourceNotFoundException;
 import br.com.devdojo.demo.model.Student;
 import br.com.devdojo.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.xml.ws.Response;
 
 import java.util.Optional;
 
@@ -26,8 +33,8 @@ public class StudentEndpoint {
 
     // Buscar todos
     @GetMapping
-    public ResponseEntity<?> listAll() {
-        return new ResponseEntity<>(studentDAO.findAll(), HttpStatus.OK);
+    public ResponseEntity<?> listAll(Pageable pageable) {
+        return new ResponseEntity<>(studentDAO.findAll(pageable), HttpStatus.OK);
     }
 
     // Buscar por ID
@@ -47,7 +54,7 @@ public class StudentEndpoint {
     // Adicionar
     @PostMapping
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity<?> save(@RequestBody Student student) {
+    public ResponseEntity<?> save(@Valid @RequestBody Student student) {
         return new ResponseEntity<>(studentDAO.save(student), HttpStatus.CREATED);//passa o obejto que foi adicionado como resposta
     }
 

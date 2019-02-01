@@ -1,35 +1,6 @@
 package br.com.devdojo.demo.error;
 
-public class ResourseNotFoundDetails {
-    private  String title;
-    private  int status;
-    private  String detail;
-    private  long timestamp;
-    private String developerMessage;
-
-    private ResourseNotFoundDetails() {
-
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public String getDeveloperMessage() {
-        return developerMessage;
-    }
+public class ResourseNotFoundDetails extends ErrorDetails {
 
 
     public static final class Builder {
@@ -73,11 +44,11 @@ public class ResourseNotFoundDetails {
 
         public ResourseNotFoundDetails build() {
             ResourseNotFoundDetails resourseNotFoundDetails = new ResourseNotFoundDetails();
-            resourseNotFoundDetails.detail = this.detail;
-            resourseNotFoundDetails.timestamp = this.timestamp;
-            resourseNotFoundDetails.title = this.title;
-            resourseNotFoundDetails.status = this.status;
-            resourseNotFoundDetails.developerMessage = this.developerMessage;
+            resourseNotFoundDetails.setDetail(detail);
+            resourseNotFoundDetails.setTimestamp(timestamp);
+            resourseNotFoundDetails.setTitle(title);
+            resourseNotFoundDetails.setStatus(status);
+            resourseNotFoundDetails.setDeveloperMessage(developerMessage);
             return resourseNotFoundDetails;
         }
     }
